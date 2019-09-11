@@ -49,7 +49,8 @@ namespace Exterminator.WebApi.ExceptionHandlerExtensions
                         {
                             StatusCode = statusCode,
                             ExceptionMessage = exception.Message,
-                            StackTrace = exception.StackTrace.ToString()
+                            // Setur þetta frekar inni log
+                            //StackTrace = exception.StackTrace.ToString()
                         }.ToString());
                     }
                 });

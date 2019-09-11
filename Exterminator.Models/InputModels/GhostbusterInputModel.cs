@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-
-// TODO: using Exterminator.Models.Attributes;
+using Exterminator.Models.Attributes;
 
 namespace Exterminator.Models.InputModels
 {
@@ -11,7 +10,7 @@ namespace Exterminator.Models.InputModels
         [MaxLength(50)]
         public string Name { get; set; }
         [Required]
-        // [Expertize]
+        [Expertize]
         public string Expertize { get; set; }
     }
 }
