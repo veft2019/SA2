@@ -25,7 +25,6 @@ namespace Exterminator.WebApi.ExceptionHandlerExtensions
                         var exception = exceptionHandlerFeature.Error;
                         // Default return exp status code
                         var statusCode = (int) HttpStatusCode.InternalServerError;
-                        // TODO: LOG the error
 
                         if(exception is ResourceNotFoundException)
                         {
@@ -44,13 +43,23 @@ namespace Exterminator.WebApi.ExceptionHandlerExtensions
                         context.Response.ContentType = "application/json";
                         // This is needed to get the right Statuscode header in postman
                         context.Response.StatusCode = statusCode;
+                        //ExceptionModel filled
+                        ExceptionModel exceptionModel = new ExceptionModel 
+                        {
+                            StatusCode = statusCode,
+                            ExceptionMessage = exception.Message,
+                            StackTrace = exception.StackTrace.ToString()
+                        };
+
+                        // LOG the error
+                        var logService = app.ApplicationServices.GetService(typeof(ILogService)) as ILogService;
+                        logService.LogToDatabase(exceptionModel);
 
                         await context.Response.WriteAsync(new ExceptionModel
                         {
                             StatusCode = statusCode,
                             ExceptionMessage = exception.Message,
-                            // Setur þetta frekar inni log
-                            //StackTrace = exception.StackTrace.ToString()
+                            StackTrace = exception.StackTrace.ToString()
                         }.ToString());
                     }
                 });

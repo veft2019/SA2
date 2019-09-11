@@ -6,6 +6,15 @@ namespace Exterminator.WebApi.Controllers
     [Route("api/logs")]
     public class LogController : Controller
     {
-        // TODO: Implement route which gets all logs from the ILogService, which should be injected through the constructor
+        private readonly ILogService _logservice;
+
+        public LogController(ILogService logService) 
+        {
+            _logservice = logService;
+        }
+        
+        [HttpGet]
+        [Route("")]
+        public IActionResult GetAllLogs() => Ok(_logservice.GetAllLogs());
     }
 }
