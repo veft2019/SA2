@@ -32,6 +32,11 @@ namespace Exterminator.WebApi
             services.AddMvc();
 
             // TODO: Register dependencies
+            services.AddTransient<ILogService, LogService>();
+            services.AddTransient<IGhostbusterService, GhostbusterService>();
+            services.AddTransient<ILogRepository, LogRepository>();
+            services.AddTransient<IGhostbusterRepository, GhostbusterRepository>();
+            services.AddTransient<IGhostbusterDbContext, GhostbusterDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +48,7 @@ namespace Exterminator.WebApi
             }
 
             // TODO: Setup global exception handling
+            app.UseGlobalExceptionHandler();
 
             app.UseMvc();
         }
