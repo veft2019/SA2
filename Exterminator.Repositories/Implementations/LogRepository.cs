@@ -29,6 +29,6 @@ namespace Exterminator.Repositories.Implementations
             ExceptionMessage = log.ExceptionMessage,
             StackTrace = log.StackTrace,
             Timestamp = log.Timestamp 
-        }).OrderBy(o => o.Timestamp);
+        }).OrderByDescending(o => o.Timestamp);
     }
 }
