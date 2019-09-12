@@ -36,7 +36,7 @@ namespace Exterminator.WebApi
             services.AddTransient<IGhostbusterService, GhostbusterService>();
             services.AddTransient<ILogRepository, LogRepository>();
             services.AddTransient<IGhostbusterRepository, GhostbusterRepository>();
-            services.AddTransient<IGhostbusterDbContext, GhostbusterDbContext>();
+            services.AddSingleton<IGhostbusterDbContext, GhostbusterDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
