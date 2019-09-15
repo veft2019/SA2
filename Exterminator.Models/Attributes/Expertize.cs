@@ -5,7 +5,7 @@ namespace Exterminator.Models.Attributes
 {
     public sealed class Expertize : ValidationAttribute
     {
-        public string validExpertize = "Ghost catcher, Ghoul strangler, Monster encager, Zombie exploder";
+        public string validExpertize = "Ghost catcher,Ghoul strangler,Monster encager,Zombie exploder";
         protected override ValidationResult IsValid(object expertize, ValidationContext validationContext)
         {
             string[] arr = validExpertize.ToString().Split(',');
@@ -14,7 +14,7 @@ namespace Exterminator.Models.Attributes
             {
                 return ValidationResult.Success;
             }
-            else 
+            else
             {
                 return new ValidationResult("Expertize not right, please choose the following: Ghost catcher, Ghoul stranger, Monster encager, Zombie exploder");
             }
